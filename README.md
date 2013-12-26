@@ -1,2 +1,2 @@
-Symfony2Sample
+Symfony2 Sample
 ==============
