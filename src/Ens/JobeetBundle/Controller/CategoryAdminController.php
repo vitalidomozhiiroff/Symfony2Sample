@@ -1,7 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vitalid
- * Date: 29/12/2013
- * Time: 03:33
- */ 
+
+// src/Ens/JobeetBundle/Controller/CategoryAdminController.php
+namespace Ens\JobeetBundle\Controller;
+
+use Sonata\AdminBundle\Controller\CRUDController as Controller;
+
+class CategoryAdminController extends Controller
+{
+
+}

@@ -13,6 +13,7 @@
     {% block javascripts %}
     {% endblock %}
     <link rel="shortcut icon" href="{{ asset('bundles/ensjobeet/images/favicon.ico') }}" />
+    <link rel="alternate" type="application/atom+xml" title="Latest Jobs" href="{{ url('ens_job', {'_format': 'atom'}) }}" />
 </head>
 <body>
 <div id="container">
@@ -26,7 +27,7 @@
                 <div class="post">
                     <h2>Ask for people</h2>
                     <div>
-                        <a href="{{ path('ens_job') }}">Post a Job</a>
+                        <a href="{{ path('ens_job_new') }}">Post a Job</a>
                     </div>
                 </div>
 
@@ -61,6 +62,19 @@
             {% block content %}
             {% endblock %}
         </div>
+
+        <div id="job_history">
+            Recent viewed jobs:
+            <ul>
+                {% for job in app.session.get('job_history') %}
+                    <li>
+                        <a href="{{ path('ens_job_show', { 'id': job.id, 'company': job.companyslug, 'location': job.locationslug, 'position': job.positionslug }) }}">{{ job.position }} - {{ job.company }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div id="content">
     </div>
 
     <div id="footer">
@@ -73,9 +87,10 @@
           </span>
             <ul>
                 <li><a href="">About Jobeet</a></li>
-                <li class="feed"><a href="">Full feed</a></li>
+                <li><a href="{{ path('ens_job', {'_format': 'atom'}) }}">Full feed</a></li>
                 <li><a href="">Jobeet API</a></li>
                 <li class="last"><a href="">Affiliates</a></li>
+
             </ul>
         </div>
     </div>
